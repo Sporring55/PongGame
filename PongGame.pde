@@ -18,13 +18,15 @@ void draw(){
   ball.reset();
   ball.hitR(right);
   ball.hitL(left);
-  ball.keyPressed();
+  ball.keyPressed(); 
   
+ 
   
   right.update();
   left.update();
   right.show();
   left.show();
+  stickReset();
   
   
 }
@@ -35,19 +37,27 @@ void keyReleased(){
 }
 void keyPressed(){
  if(key == 'w'){
-   left.move(-5);
+   left.move(-4);
  }
  else if(key == 's'){
-   left.move(5);
+   left.move(4);
  }
  if(key == 'o'){
-   right.move(-5);
+   right.move(-4);
  }
  else if(key == 'l'){
-   right.move(5);
+   right.move(4);
  }
  redraw();  
 }
+void stickReset(){
+ 
+ if(ball.bX > width || ball.bX < 0){
+  left.y = height/2;
+  right.y = height/2;
+ }
+}
+
 
 
 

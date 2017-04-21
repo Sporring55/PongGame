@@ -4,6 +4,7 @@ class Stick {
   float h = 100;
   float w = 20;
   float ychange = 0;
+
    Stick(float x_){
      x = x_;
    }
@@ -11,6 +12,7 @@ class Stick {
     fill(255);
     rectMode(CENTER);
     rect(x,y,w,h);
+    
   }
   void update(){
     y += ychange;
@@ -18,6 +20,9 @@ class Stick {
   }
   void move(float steps){
       ychange = steps; 
+  }
+  void reset(){
+    
   }
 
 }
