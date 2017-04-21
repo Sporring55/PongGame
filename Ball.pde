@@ -1,6 +1,6 @@
 class Ball {
-  float xspeed = -5;
-  float yspeed = -1;
+  float xspeed = 0;
+  float yspeed = 0;
   int bX = width/2;
   int bY = height/2;
   float r = 12;
@@ -25,49 +25,61 @@ class Ball {
  }
  void hitL(Stick s){
     if(bY < s.y + s.h/2 && bY > s.y - s.h/2 && bX-r < s.x + s.w/2){
-     xspeed *=-1;
+     xspeed *=-1;  
+    if(bY < s.y -s.h/2 + 50){
+         yspeed += -1;
+       }
+      else if(bY > s.y -s.h/2 + 50){
+         yspeed += 1;
+       }  
+    }
+    println(bY > s.y -s.h/2 + 50);
+      
+   }
      
-     if(s.h > 50){
-         yspeed += -1;
-       }
-      if(s.h < 50){
-         yspeed += 1;
-       }
-       println(yspeed);
-    }
-      
-    }
-     void hitR(Stick s){
+   void hitR(Stick s){
     if(bY < s.y + s.h/2 && bY > s.y - s.h/2 && bX+r > s.x - s.w/2){
-     xspeed *=-1;
-       if(s.h > 50){
+       xspeed *=-1;
+      if(bY < s.y -s.h/2 + 50){
          yspeed += -1;
        }
-      if(s.h < 50){
+      else if(bY > s.y -s.h/2 + 50){
          yspeed += 1;
        }
     }
+    
       
-    }
+   }
 
-void reset() {
+ void reset() {
   if(bX > width){
      bX = width/2;
      bY = height/2;
-     lScore++;
-   
-     
+     lScore++;  
   }
   if(bX < 0){
     bX = width/2;
     bY = height/2;
     rScore++;
-  
-    println(rScore);
     
   }
-     
+ 
+    
   }
+   
+  void keyPressed(){
+   if(key == 'c'){
+     bX = width/2;
+     bY = height/2;
+     yspeed = 0;
+     xspeed = 0;
+   }
+   if(key == 'v'){
+     yspeed = 1;
+     xspeed = -5;
+   }
+   
+   }   
+ }
   
  
-}

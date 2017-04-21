@@ -18,6 +18,7 @@ void draw(){
   ball.reset();
   ball.hitR(right);
   ball.hitL(left);
+  ball.keyPressed();
   
   
   right.update();
