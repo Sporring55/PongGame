@@ -1,13 +1,13 @@
 Ball ball;
 Stick left;
 Stick right;
-
+PFont font;
 void setup(){
  size(800, 600);
  ball = new Ball();
  right = new Stick(width - 20);
  left = new Stick(0 + 20);
- 
+ font = createFont("font/pixel.TTF", 22);
  
 }
 void draw(){

@@ -1,5 +1,5 @@
 class Ball {
-  float xspeed = floor(random(-3, 3));
+  float xspeed = -5;
   float yspeed = -1;
   int bX = width/2;
   int bY = height/2;
@@ -10,6 +10,9 @@ class Ball {
    fill(255);
    stroke(255);
    ellipse(bX,bY, r*2,r*2); 
+   textFont(font);
+   text("Score: " + lScore, 40, 50);
+   text("Score: " + rScore, 600, 50);
  }
  void bMove(){
    bX += xspeed;
@@ -22,13 +25,27 @@ class Ball {
  }
  void hitL(Stick s){
     if(bY < s.y + s.h/2 && bY > s.y - s.h/2 && bX-r < s.x + s.w/2){
-     xspeed *=-1;   
+     xspeed *=-1;
+     
+     if(s.h > 50){
+         yspeed += -1;
+       }
+      if(s.h < 50){
+         yspeed += 1;
+       }
+       println(yspeed);
     }
       
     }
      void hitR(Stick s){
     if(bY < s.y + s.h/2 && bY > s.y - s.h/2 && bX+r > s.x - s.w/2){
-     xspeed *=-1;   
+     xspeed *=-1;
+       if(s.h > 50){
+         yspeed += -1;
+       }
+      if(s.h < 50){
+         yspeed += 1;
+       }
     }
       
     }
@@ -38,14 +55,14 @@ void reset() {
      bX = width/2;
      bY = height/2;
      lScore++;
-     xspeed = floor(random(-5, 5));
+   
      
   }
   if(bX < 0){
     bX = width/2;
     bY = height/2;
     rScore++;
-    xspeed = floor(random(-5, 5));
+  
     println(rScore);
     
   }
