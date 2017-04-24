@@ -6,6 +6,7 @@ Ai aiC;
 PFont font;
 
 PImage img;
+boolean frontPage = true;
 boolean player = false;
 boolean ai = false;
 boolean howTo = false;
@@ -24,17 +25,14 @@ void draw(){
   background(0);
 
   image(img,0,0);
-  if(player == false && ai == false && howTo == false){
+  if(ai == false && player == false && howTo == false){
     front.frontPage();
   }
   if(howTo == true){
    front.how(); 
-   ai = false;
-   player = false;
+   
   }
   if(player == true){
-    ai = false;
-    howTo = false;
     //Ball
     ball.show();
     ball.bMove();
@@ -54,8 +52,6 @@ void draw(){
     }
   } 
   if(ai == true){
-    player = false;
-    howTo = false;
     //Ball
     ball.show();
     ball.bMove();
@@ -97,26 +93,40 @@ void keyPressed(){
    }
  }
  if(key == 'q'){
-   player = false;
    ai = false;
+   player = false;
    howTo = false;
+   ball.lScore = 0;
+   ball.rScore = 0;
+   right.stickReset();
+   left.stickReset();
+   ballReset();
  }
  redraw();  
  
  
 }
 void mouseClicked(){
-  if(mouseY < height/2 && mouseY > height/2 -25){
+  if(mouseY < height/2 && mouseY > height/2 -25 && ai == false && howTo == false){
     player = true;
+  
     println(mouseY);
   }
-  if(mouseY < height/2 + 40 && mouseY > height/2 + 20){
+  if(mouseY < height/2 + 40 && mouseY > height/2 + 20 && ai == false && player == false ){
    ai = true; 
+   
   }
-  if(mouseY < height/2 + 80 && mouseY > height/2 + 60){
+  if(mouseY < height/2 + 80 && mouseY > height/2 + 60 && player == false && ai == false){
    howTo = true; 
+   
   }
   
+ }
+ void ballReset() {
+   ball.bX = width/2;
+   ball.bY = height/2;
+   ball.yspeed = 0;
+   
  }
 
 
