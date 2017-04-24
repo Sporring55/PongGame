@@ -4,6 +4,8 @@ Stick right;
 Front front;
 Ai aiC;
 PFont font;
+
+PImage img;
 boolean player = false;
 boolean ai = false;
 boolean howTo = false;
@@ -15,17 +17,24 @@ void setup(){
  front = new Front();
  aiC = new Ai();
  font = createFont("../font/pixel.TTF", 22);
+ img = loadImage("../image/pongImg.jpg");
  
 }
 void draw(){
   background(0);
+
+  image(img,0,0);
   if(player == false && ai == false && howTo == false){
     front.frontPage();
   }
   if(howTo == true){
    front.how(); 
+   ai = false;
+   player = false;
   }
   if(player == true){
+    ai = false;
+    howTo = false;
     //Ball
     ball.show();
     ball.bMove();
@@ -45,6 +54,8 @@ void draw(){
     }
   } 
   if(ai == true){
+    player = false;
+    howTo = false;
     //Ball
     ball.show();
     ball.bMove();

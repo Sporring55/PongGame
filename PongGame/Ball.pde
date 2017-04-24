@@ -16,7 +16,7 @@ class Ball {
    ellipse(bX,bY, r*2,r*2); 
    textFont(font);
    text("Score: " + lScore, 80, 50);
-   text("Score: " + rScore, 700, 50);
+   text("Score: " + rScore, width - 100, 50);
  }
  void bMove(){
    bX += xNew;
