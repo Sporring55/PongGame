@@ -12,6 +12,7 @@ class Stick {
     fill(255);
     rectMode(CENTER);
     rect(x,y,w,h);
+
     
   }
   void update(){
@@ -21,8 +22,7 @@ class Stick {
   void move(float steps){
       ychange = steps; 
   }
-  void reset(){
-    
+  void stickReset() {
+    y = height/2;
   }
-
 }

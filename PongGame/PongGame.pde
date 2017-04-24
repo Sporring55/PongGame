@@ -1,34 +1,65 @@
 Ball ball;
 Stick left;
 Stick right;
+Front front;
+Ai aiC;
 PFont font;
+boolean player = false;
+boolean ai = false;
 void setup(){
  size(800, 600);
  ball = new Ball();
  right = new Stick(width - 20);
  left = new Stick(0 + 20);
+ front = new Front();
+ aiC = new Ai();
  font = createFont("../font/pixel.TTF", 22);
  
 }
 void draw(){
   background(0);
-  ball.show();
-  ball.bMove();
-  ball.edges();
-  ball.reset();
-  ball.hitR(right);
-  ball.hitL(left);
-  ball.keyPressed(); 
-  
- 
-  
-  right.update();
-  left.update();
-  right.show();
-  left.show();
-  stickReset();
-  
-  
+  if(player == false && ai == false){
+    front.frontPage();
+  }
+  if(player == true){
+    //Ball
+    ball.show();
+    ball.bMove();
+    ball.edges();
+    ball.reset();
+    ball.hitR(right);
+    ball.hitL(left);
+    ball.keyPressed(); 
+    //Paddles
+    right.update();
+    left.update();
+    right.show();
+    left.show();
+    if(ball.bX <= 1 || ball.bX >= width-1){
+      right.stickReset();
+      left.stickReset();
+    }
+  } 
+  if(ai == true){
+    //Ball
+    ball.show();
+    ball.bMove();
+    ball.edges();
+    ball.reset();
+    ball.hitR(right);
+    ball.hitL(left);
+    ball.keyPressed(); 
+    //Paddles
+    left.show();
+    right.show();
+    left.update();
+    right.update();
+    aiC.control(right, ball);
+    if(ball.bX <= 1 || ball.bX >= width-1){
+      right.stickReset();
+      left.stickReset();
+    }
+  }
 }
 void keyReleased(){
   left.move(0);
@@ -42,21 +73,36 @@ void keyPressed(){
  else if(key == 's'){
    left.move(4);
  }
- if(key == 'o'){
-   right.move(-4);
+ if( player == true){
+   if(key == 'o'){
+     right.move(-4);
+   }
+   else if(key == 'l'){
+     right.move(4);
+   }
  }
- else if(key == 'l'){
-   right.move(4);
+ if(key == 'q'){
+   player = false;
+   ai = false;
  }
  redraw();  
-}
-void stickReset(){
  
- if(ball.bX > width || ball.bX < 0){
-  left.y = height/2;
-  right.y = height/2;
- }
+ 
 }
+void mouseClicked(){
+  if(mouseY < height/2 && mouseY > height/2 -25){
+    player = true;
+    println(mouseY);
+  }
+  if(mouseY < height/2 + 40 && mouseY > height/2 + 20){
+   ai = true; 
+  }
+  
+ }
+
+
+ 
+ 
 
 
 

@@ -1,35 +1,34 @@
 class Ball {
   float xspeed = floor(random(-1,1));
   float yspeed = 0;
+  float cY = 2;
+  float cX = 7;
   int bX = width/2;
   int bY = height/2;
   float r = 12;
   int lScore = 0;
   int rScore = 0;
-  float xNew = xspeed *5;
+  float xNew = xspeed * cX;
   
  void show(){
-    
    fill(255);
    stroke(255);
    ellipse(bX,bY, r*2,r*2); 
    textFont(font);
-   text("Score: " + lScore, 40, 50);
-   text("Score: " + rScore, 600, 50);
+   text("Score: " + lScore, 80, 50);
+   text("Score: " + rScore, 700, 50);
  }
  void bMove(){
    bX += xNew;
    bY += yspeed;
-   //println(xNew);
-   println(yspeed);
    if(xNew == 0){
-    xNew += 5; 
+    xNew += cX; 
    }
-   if(yspeed > 2.7){
-      yspeed = 2.7; 
+   if(yspeed > cY){
+      yspeed = cY; 
    }
-   if(yspeed < -2.7){
-    yspeed = -2.7; 
+   if(yspeed < -cY){
+    yspeed = -cY; 
    }
  }
  void edges(){
@@ -38,28 +37,30 @@ class Ball {
    }
  }
  void hitL(Stick s){
-    if(bY < s.y + s.h/2 && bY > s.y - s.h/2 && bX-r < s.x + s.w/2){
+    if(bY < s.y + s.h/2 && bY > s.y - s.h/2 && bX-r < s.x + s.w/2 && bY > 0){
      xNew *=-1;  
-      if(bY < s.y -s.h/2 + 40){
-           yspeed = -2.7;
+      if(bY < s.y -s.h/2 + 50){
+           yspeed = -cY;
       }
-      else if(bY > s.y -s.h/2 + 40){
-         yspeed = 2.7;
-       }else {
+      else if(bY > s.y -s.h/2 + 50){
+         yspeed = cY;
+       }
+       else {
         yspeed = 0; 
        }
     }      
    }
      
    void hitR(Stick s){
-    if(bY < s.y + s.h/2 && bY > s.y - s.h/2 && bX+r > s.x - s.w/2){
+    if(bY < s.y + s.h/2 && bY > s.y - s.h/2 && bX+r > s.x - s.w/2 && bY > 0){
        xNew *=-1;
       if(bY < s.y -s.h/2 + 50){
-         yspeed = -2.7;
+         yspeed = -cY;
        }
       else if(bY > s.y -s.h/2 + 50){
-         yspeed = 2.7;
-       }else {
+         yspeed = cY;
+       }
+       else {
         yspeed = 0; 
        }
     }
@@ -73,7 +74,7 @@ class Ball {
        bX = width/2;
        bY = height/2;
        lScore++; 
-       xNew = -5;
+       xNew = -cX;
        yspeed = 0;
        
      
@@ -87,7 +88,7 @@ class Ball {
       bX = width/2;
       bY = height/2;
       rScore++;
-      xNew = 5;
+      xNew = cX;
       yspeed = 0;
       
      
