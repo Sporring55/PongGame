@@ -40,12 +40,14 @@ class Ball {
  void hitL(Stick s){
     if(bY < s.y + s.h/2 && bY > s.y - s.h/2 && bX-r < s.x + s.w/2){
      xNew *=-1;  
-      if(bY < s.y -s.h/2 + 50){
+      if(bY < s.y -s.h/2 + 40){
            yspeed = -2.7;
       }
-      else if(bY > s.y -s.h/2 + 50){
+      else if(bY > s.y -s.h/2 + 40){
          yspeed = 2.7;
-       }  
+       }else {
+        yspeed = 0; 
+       }
     }      
    }
      
@@ -57,6 +59,8 @@ class Ball {
        }
       else if(bY > s.y -s.h/2 + 50){
          yspeed = 2.7;
+       }else {
+        yspeed = 0; 
        }
     }
     

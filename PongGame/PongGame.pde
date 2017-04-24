@@ -7,7 +7,7 @@ void setup(){
  ball = new Ball();
  right = new Stick(width - 20);
  left = new Stick(0 + 20);
- font = createFont("font/pixel.TTF", 22);
+ font = createFont("../font/pixel.TTF", 22);
  
 }
 void draw(){
