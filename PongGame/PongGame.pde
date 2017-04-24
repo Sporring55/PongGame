@@ -6,6 +6,7 @@ Ai aiC;
 PFont font;
 boolean player = false;
 boolean ai = false;
+boolean howTo = false;
 void setup(){
  size(800, 600);
  ball = new Ball();
@@ -18,8 +19,11 @@ void setup(){
 }
 void draw(){
   background(0);
-  if(player == false && ai == false){
+  if(player == false && ai == false && howTo == false){
     front.frontPage();
+  }
+  if(howTo == true){
+   front.how(); 
   }
   if(player == true){
     //Ball
@@ -84,6 +88,7 @@ void keyPressed(){
  if(key == 'q'){
    player = false;
    ai = false;
+   howTo = false;
  }
  redraw();  
  
@@ -96,6 +101,9 @@ void mouseClicked(){
   }
   if(mouseY < height/2 + 40 && mouseY > height/2 + 20){
    ai = true; 
+  }
+  if(mouseY < height/2 + 80 && mouseY > height/2 + 60){
+   howTo = true; 
   }
   
  }
